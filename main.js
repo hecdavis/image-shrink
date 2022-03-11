@@ -1,8 +1,5 @@
 const { app, BrowserWindow } = require("electron");
 
-// Set env
-process.env.NODE_ENV = "development";
-
 const isDev = process.env.NODE_ENV !== "production";
 const isMac = process.platform === "darwin";
 const isWin = process.platform === "win32";
