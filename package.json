@@ -1,0 +1,22 @@
+{
+  "name": "image-shrink",
+  "version": "1.0.0",
+  "description": "App to optimize images",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hecdavis/image-shrink.git"
+  },
+  "author": "Hector Davis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hecdavis/image-shrink/issues"
+  },
+  "homepage": "https://github.com/hecdavis/image-shrink#readme",
+  "devDependencies": {
+    "electron": "^17.1.2"
+  }
+}
