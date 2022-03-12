@@ -14,7 +14,7 @@ function createMainWindow() {
     title: 'ImageShrink',
     icon: `${__dirname}/assets/icons/Icon_256x256.png`,
     resizable: isDev,
-    backgroundColor: '#65646d',
+    backgroundColor: '#314E82',
   });
   mainWindow.loadFile(`${__dirname}/app/index.html`);
 }
