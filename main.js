@@ -9,13 +9,20 @@ let aboutWindow;
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
-    width: 500,
+    width: isDev ? 800 : 500,
     height: 600,
     title: 'ImageShrink',
     icon: `${__dirname}/assets/icons/Icon_256x256.png`,
     resizable: isDev,
     backgroundColor: '#314E82',
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
   mainWindow.loadFile(`${__dirname}/app/index.html`);
 }
 function createAboutWindow() {
