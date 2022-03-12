@@ -21,5 +21,11 @@
     "cross-env": "^7.0.3",
     "electron": "^17.1.2",
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "imagemin": "7",
+    "imagemin-mozjpeg": "8.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "slash": "3"
   }
 }
