@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
@@ -13,11 +13,46 @@ function createMainWindow() {
     title: 'ImageShrink',
     icon: `${__dirname}/assets/icons/Icon_256x256.png`,
     resizable: isDev,
+    backgroundColor: '#65646d',
   });
   mainWindow.loadFile(`${__dirname}/app/index.html`);
 }
 
-app.on('ready', createMainWindow);
+app.on('ready', () => {
+  createMainWindow();
+
+  const mainMenu = Menu.buildFromTemplate(menu);
+  Menu.setApplicationMenu(mainMenu);
+
+  globalShortcut.register('CmdOrCtrl+R', () => mainWindow.reload());
+  globalShortcut.register(`${isMac ? 'Command' : 'Ctrl'}+Alt+I`, () =>
+    mainWindow.toggleDevTools()
+  );
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+});
+
+const menu = [
+  ...(isMac ? [{ role: 'appMenu' }] : []),
+  {
+    role: 'fileMenu',
+  },
+  ...(isDev
+    ? [
+        {
+          label: 'Developer',
+          submenu: [
+            { role: 'reload' },
+            { role: 'forcereload' },
+            { role: 'separator' },
+            { role: 'toggledevtools' },
+          ],
+        },
+      ]
+    : []),
+];
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
