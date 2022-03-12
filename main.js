@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
@@ -92,6 +92,10 @@ const menu = [
       ]
     : []),
 ];
+
+ipcMain.on('image:minimize', (e, { imgPath, quality }) => {
+  console.log(imgPath, quality);
+});
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
