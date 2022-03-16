@@ -8,6 +8,9 @@ const log = require('electron-log');
 
 const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron');
 
+// Set env
+process.env.NODE_ENV = process.env.NODE_ENV ?? 'production';
+
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
 const isWin = process.platform === 'win32';
