@@ -4,6 +4,7 @@ const imagemin = require('imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const slash = require('slash');
+const log = require('electron-log');
 
 const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron');
 
@@ -117,12 +118,15 @@ async function shrinkImage({ imgPath, quality, dest }) {
         }),
       ],
     });
-    console.log(files);
+
+    log.info(files);
+
     shell.openPath(dest);
 
     mainWindow.webContents.send('image:done');
   } catch (err) {
     console.log(err);
+    log.error(err);
   }
 }
 
